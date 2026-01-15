@@ -90,6 +90,3 @@ Este repositório também pode servir como referência para outros desenvolvedor
 
 Todo o conteúdo aqui presente tem como finalidade **educacional**, com foco no desenvolvimento técnico e profissional na área de qualidade de software e backend.
 
----
-
-📍 *Repositório desenvolvido para estudo contínuo e aperfeiçoamento em testes automatizados.*
