@@ -54,6 +54,7 @@ public class CategoryService {
     public CategoryDTO update (Long id, CategoryDTO categoryDTO) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
+        categoryMapper.updateEntityFromDto(categoryDTO, category);
         return categoryMapper.toDTO(categoryRepository.save(category));
     }
 }
