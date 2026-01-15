@@ -4,6 +4,8 @@ import com.barbosa.estudo.dto.CategoryDTO;
 import com.barbosa.estudo.entities.Category;
 import com.barbosa.estudo.mappers.CategoryMapper;
 import com.barbosa.estudo.repositories.CategoryRepository;
+import com.barbosa.estudo.service.serviceException.DataBaseException;
+import com.barbosa.estudo.service.serviceException.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +28,7 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id){
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         return categoryMapper.toDTO(category);
     }
 
@@ -39,19 +41,19 @@ public class CategoryService {
     @Transactional
     public void delete(Long id){
         if (!categoryRepository.existsById(id)){
-            throw new RuntimeException("Category not found");
+            throw new ResourceNotFoundException(id);
         }
         try {
             categoryRepository.deleteById(id);
         } catch (Exception e){
-            throw new RuntimeException("Error while deleting category");
+            throw new DataBaseException("Integrity violation - Category id: " + id);
         }
     }
 
     @Transactional
     public CategoryDTO update (Long id, CategoryDTO categoryDTO) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         return categoryMapper.toDTO(categoryRepository.save(category));
     }
 }
