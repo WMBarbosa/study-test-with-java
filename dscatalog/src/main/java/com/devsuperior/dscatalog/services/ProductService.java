@@ -8,6 +8,7 @@ import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class ProductService {
         }
         try {
             productRepository.deleteById(id);
-        } catch (Exception e){
+        } catch (DataIntegrityViolationException e){
             throw new DatabaseException("Integrity violation - Category id: " + id);
         }
     }
