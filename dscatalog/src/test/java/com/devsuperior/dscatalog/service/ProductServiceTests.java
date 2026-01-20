@@ -101,7 +101,7 @@ public class ProductServiceTests {
             service.delete(nonExistingId);
         });
 
-        verify(repository, Mockito.never()).deleteById(nonExistingId);
+        verify(repository, never()).deleteById(nonExistingId);
     }
 
     @Test
@@ -118,14 +118,9 @@ public class ProductServiceTests {
     public void updateShouldReturnProductDTOWhenIdExists(){
         ProductDTO dto = new ProductDTO();
 
-        when(repository.findById(existingId))
-                .thenReturn(Optional.of(product));
-
-        when(repository.save(any()))
-                .thenReturn(product);
-
-        when(productMapper.toDTO(product))
-                .thenReturn(dto);
+        when(repository.findById(existingId)).thenReturn(Optional.of(product));
+        when(repository.save(any())).thenReturn(product);
+        when(productMapper.toDTO(product)).thenReturn(dto);
 
         ProductDTO result = service.update(existingId, dto);
 
