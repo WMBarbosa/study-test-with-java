@@ -2,7 +2,7 @@ package com.devsuperior.demo.dto;
 
 import com.devsuperior.demo.entities.Employee;
 
-public class feat: initialize project with Maven, for tdd studysEmployeeDTO {
+public class EmployeeDTO {
 	
 	private Long id;
 	private String name;
