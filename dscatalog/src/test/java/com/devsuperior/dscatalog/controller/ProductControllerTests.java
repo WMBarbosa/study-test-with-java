@@ -38,6 +38,7 @@ public class ProductControllerTests {
     private PageImpl<ProductDTO> page;
     private Long existingId;
     private Long nonExistingId;
+
     @Autowired
     private ObjectMapper objectMapper;
 
