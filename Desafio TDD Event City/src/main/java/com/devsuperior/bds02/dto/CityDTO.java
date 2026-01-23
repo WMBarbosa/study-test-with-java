@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 import com.devsuperior.bds02.entities.City;
 
-public class CityDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class CityDTO {
 	
 	private Long id;
 	private String name;
